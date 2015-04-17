@@ -1,50 +1,47 @@
 <!doctype html>
 <html>
   <head>
+    <meta charset='utf-8'>
     <title>blank</title>
     <style type="text/css">
       *, *:before, *:after {
         box-sizing: border-box;
       }
       body {
+        font-size: 150px;
+        background: #ccc;
+        text-align: center;
       }
-      input {
-        width: 100%;
-        font-size: 3em;
+      a {
+        color: #000;
+        text-decoration: none;
       }
     </style>
   </head>
   <body>
-    <form id='address'>
-      <input type='text' name='q' autofocus>
-    </form>
-    <p><a href='' id='cmd-l'>cmd+l</a></p>
+    <h1>
+      <a href='/cmdl' id='cmd-l'>🌚</a>
+    </h1>
     <script type="text/javascript">
-      document.addEventListener('DOMContentLoaded', function() {
-        var form = document.getElementById('address');
-        form.onsubmit = function(e) {
-          e.preventDefault();
-          var dest, val = e.target.q.value;
-          console.log(val.match(regex));
-          if (val.match(regex)) {
-            dest = val;
-          } else {
-            dest = 'https://duckduckgo.com/?q=' + val;
-          }
-          window.location = dest;
-        };
+      (function() {
+        document.addEventListener('DOMContentLoaded', function() {
+          var cmdl = document.getElementById('cmd-l');
 
-        var cmdl = document.getElementById('cmd-l');
-        cmdl.onclick = function(e) {
-          e.preventDefault();
+          cmdl.onclick = function(e) {
+            e.preventDefault();
+            cmdL();
+          };
+
+          setTimeout(function() { cmdl.click() }, 10);
+        });
+
+        function cmdL() {
           var req = new XMLHttpRequest();
-          req.onload = function(data) { console.log('ok', data) };
+          req.onload = function(e) { console.log('ok', req.responseText) };
           req.open('get', '/cmdl', true);
           req.send();
-        };
-      });
-
-      var regex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}(\.[a-z]{2,6})?\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
+        }
+      })();
     </script>
   </body>
 </html>
