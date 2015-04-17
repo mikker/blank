@@ -1,3 +1,48 @@
+#!/usr/bin/env ruby
+
+require 'webrick'
+
+APPLESCRIPT = <<-OSASCRIPT
+osascript -e 'tell application "Safari"
+    activate
+    tell application "System Events"
+        tell process "Safari"
+            keystroke "l" using {command down}
+        end tell
+    end tell
+end tell'
+OSASCRIPT
+
+HTML = DATA.read
+
+class Blank < WEBrick::HTTPServlet::AbstractServlet
+  def do_GET(request, response)
+    case request.path
+    when '/'
+      response.body = HTML
+    when '/cmdl'
+      system APPLESCRIPT
+      response.body = 'ok'
+    end
+  end
+end
+
+opts = {
+  BindAddress: "127.0.0.1",
+  Port: 4339,
+  AccessLog: []
+}
+
+server = WEBrick::HTTPServer.new(opts)
+server.mount('/', Blank)
+
+%w(INT TERM).each do |sig|
+  trap(sig) { server.shutdown }
+end
+
+server.start
+
+__END__
 <!doctype html>
 <html>
   <head>
@@ -8,19 +53,20 @@
         box-sizing: border-box;
       }
       body {
-        font-size: 150px;
-        background: #ccc;
+        font-size: 100px;
+        font-family: sans-serif;
+        background: #ddd;
         text-align: center;
       }
       a {
-        color: #000;
+        color: #ccc;
         text-decoration: none;
       }
     </style>
   </head>
   <body>
     <h1>
-      <a href='/cmdl' id='cmd-l'>🌚</a>
+      <a href='/cmdl' id='cmd-l'>cmd+l</a>
     </h1>
     <script type="text/javascript">
       (function() {

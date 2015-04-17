@@ -3,16 +3,16 @@
 <plist version="1.0">
   <dict>
     <key>Label</key>
-    <string>com.brnbw.blank</string>
+    <string>com.brnbw.blankd</string>
     <key>KeepAlive</key>
     <true/>
     <key>ProgramArguments</key>
     <array>
-      <string>/Users/mikker/Developer/blank/blank</string>
+      <string><%= DAEMON_INSTALL_DIR %>/blankd</string>
     </array>
     <key>RunAtLoad</key>
     <true/>
     <key>WorkingDirectory</key>
-    <string>/Users/mikker/Developer/blank</string>
+    <string><%= DAEMON_INSTALL_DIR %></string>
   </dict>
 </plist>
