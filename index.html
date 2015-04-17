@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <title>blank</title>
+    <style type="text/css">
+      *, *:before, *:after {
+        box-sizing: border-box;
+      }
+      body {
+      }
+      input {
+        width: 100%;
+        font-size: 3em;
+      }
+    </style>
+  </head>
+  <body>
+    <form id='address'>
+      <input type='text' name='q' autofocus>
+    </form>
+    <p><a href='' id='cmd-l'>cmd+l</a></p>
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        var form = document.getElementById('address');
+        form.onsubmit = function(e) {
+          e.preventDefault();
+          var dest, val = e.target.q.value;
+          console.log(val.match(regex));
+          if (val.match(regex)) {
+            dest = val;
+          } else {
+            dest = 'https://duckduckgo.com/?q=' + val;
+          }
+          window.location = dest;
+        };
+
+        var cmdl = document.getElementById('cmd-l');
+        cmdl.onclick = function(e) {
+          e.preventDefault();
+          var req = new XMLHttpRequest();
+          req.onload = function(data) { console.log('ok', data) };
+          req.open('get', '/cmdl', true);
+          req.send();
+        };
+      });
+
+      var regex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}(\.[a-z]{2,6})?\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
+    </script>
+  </body>
+</html>
