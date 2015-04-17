@@ -78,7 +78,7 @@ __END__
             cmdL();
           };
 
-          setTimeout(function() { cmdl.click() }, 10);
+          setTimeout(function() { cmdl.click() }, 1); // wait a millisec
         });
 
         function cmdL() {
