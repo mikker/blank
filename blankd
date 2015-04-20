@@ -70,17 +70,17 @@ __END__
     <script type="text/javascript">
       (function() {
         document.addEventListener('DOMContentLoaded', function() {
-          var cmdl = document.getElementById('cmd-l');
+          var button = document.getElementById('cmd-l');
 
-          cmdl.onclick = function(e) {
+          button.onclick = function(e) {
             e.preventDefault();
-            cmdL();
+            commandL();
           };
 
-          setTimeout(function() { cmdl.click() }, 1); // wait a millisec
+          button.click();
         });
 
-        function cmdL() {
+        function commandL() {
           var req = new XMLHttpRequest();
           req.onload = function(e) { console.log('ok', req.responseText) };
           req.open('get', '/cmdl', true);
