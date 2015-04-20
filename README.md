@@ -19,3 +19,7 @@ We'll just make a tiny server that serves a page with one button that it clicks 
 
 Thanks to [dotjs](https://github.com/defunkt/dotjs) for the installation Rakefile.
 
+# Upgrade
+
+1. `$ rake uninstall && rake install`
+
