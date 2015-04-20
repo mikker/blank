@@ -4,7 +4,6 @@ require 'webrick'
 
 APPLESCRIPT = <<-OSASCRIPT
 osascript -e 'tell application "Safari"
-    activate
     tell application "System Events"
         tell process "Safari"
             keystroke "l" using {command down}
