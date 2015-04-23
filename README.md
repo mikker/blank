@@ -1,3 +1,7 @@
+# Turns out ...
+
+When you set Safari to "Open Blank Page" on new tab, it does this automatically. I had just set my homepage to `about:blank` which obviously isn't the same. Well. I'll keep this around for showing the concept but you really should just use "Open Blank Page".
+
 # blank
 
 Oh, where do I even start.
